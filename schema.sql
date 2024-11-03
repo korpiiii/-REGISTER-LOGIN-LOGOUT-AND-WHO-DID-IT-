@@ -14,6 +14,18 @@ CREATE TABLE unitowner (
     email VARCHAR(255) NOT NULL
 );
 
+-- Changes inside the database
+CREATE TABLE Changes (
+    unitowner_id INT AUTO_INCREMENT PRIMARY KEY,
+    owner_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    added_by INT,
+    last_updated INT,
+    FOREIGN KEY (added_by) REFERENCES users(user_id),
+    FOREIGN KEY (last_updated) REFERENCES users(user_id)
+);
 -- Create unit table
 CREATE TABLE unit (
     unitid INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
